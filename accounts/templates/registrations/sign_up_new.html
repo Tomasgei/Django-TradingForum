@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/floating-labels.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+  <div class="card" >
+
+    {% include 'includes/sign_up_form.html' %}
+            
+  </div>
+  <div class="card-footer text-muted text-center">
+    Already have an account? <a href="{% url 'login' %}">Log in</a>
+  </div>
+
+    
+{% endblock %}
+

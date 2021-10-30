@@ -1,0 +1,27 @@
+body {
+    background-image: url(../img/double-bubble-outline.png);
+
+  }
+  
+.page_title {
+    font-family: 'Montserrat', sans-serif;
+    font-size:50px;
+    font-weight:700;
+    color: #3d3a4e;
+  }
+
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+
+  }
+  
+  .logo a {
+    color: rgb(255, 255, 255);
+  }
+  
+  .logo a:hover,
+  .logo a:active {
+    text-decoration: none;
+  }
+
+  

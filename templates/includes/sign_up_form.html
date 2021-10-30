@@ -1,0 +1,32 @@
+{% load static %}
+{% load widget_tweaks %}
+
+  <form class="form-signin" method="POST">
+    <div class="text-center mb-4">
+      <img class="mb-3" src="{% static 'img/trading.svg' %}" alt="" width="72" height="72">
+      <h1 class="text-center">
+        <a href="{% url 'home' %}">Trading Forum</a>
+      </h1>
+      <h1 class="h3 mb-3 font-weight-normal">Sing Up</h1>
+      <p>Please fill this form to create your user account </p>
+    </div>
+    {% csrf_token %}
+    {% for field in form %}
+    
+            {% render_field field class="form-control mb-2 p-2" placeholder=field.label %}
+
+        
+    {% endfor %}
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> I agree to the <a href="https://caniuse.com/#feat=css-placeholder-shown">Terms of Service</a>
+      </label>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> I want to receive newsletter
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+  </form>
