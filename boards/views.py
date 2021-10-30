@@ -4,6 +4,7 @@ from .models import Board, Topic, Post
 from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 # Create your views here.
 
@@ -20,13 +21,10 @@ def TopicsView(request, pk):
     """
     This is page with linked topics for board
     
-    """ 
-    try: 
-        board = Board.objects.get(pk=pk)
-        context = {"board":board}
-    except Board.DoesNotExist:
-        raise Http404
-           
+    """   
+    board = get_object_or_404(Board,pk=pk)
+    topics = board.topics.order_by('-last_updated').annotate(replies=Count("posts") - 1)
+    context = {"board":board,"topics":topics}           
     return render(request, "topics.html", context)
 
 @login_required
@@ -64,6 +62,8 @@ def NewTopicView(request, pk):
 
 def TopicPostView(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
+    topic.views += 1
+    topic.save()
     return render(request, 'topic_posts.html', {'topic': topic})
 
 @login_required
